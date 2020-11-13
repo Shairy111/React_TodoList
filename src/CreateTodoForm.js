@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
+import uuid from 'uuid/dist/v4';
 
 class CreateTodoForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { task: '' };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 	handleSubmit(evt) {
 		evt.preventDefault();
-		this.props.AddTodo(this.state);
+		this.props.AddTodo({ ...this.state, id: uuid() });
 		this.setState({ task: '' });
 	}
 
